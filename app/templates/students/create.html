@@ -1,0 +1,12 @@
+
+{% extends 'base.html' %}
+{% block title %}Add Student{% endblock %}
+{% block content %}
+<h2>Add Student</h2>
+<form method="post">
+    {{ form.hidden_tag() }}
+    {{ form.name.label }} {{ form.name(class="form-control") }}
+    {{ form.submit(class="btn btn-success mt-2") }}
+</form>
+<a href="{{ url_for('admin.dashboard') }}" class="btn btn-warning">Retour Dashboard</a>
+{% endblock %}

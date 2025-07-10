@@ -1,0 +1,134 @@
+Student Manager - Application Flask de gestion des étudiants
+🧾 Description
+Application web Flask pour gérer :
+
+Les étudiants (CRUD)
+
+Les matières (CRUD)
+
+Les notes (CRUD + calcul automatique des moyennes)
+
+Gestion des utilisateurs avec rôles admin et standard
+
+Interface administrateur pour gestion des comptes
+
+Authentification sécurisée avec Flask-Login
+
+Interface responsive avec Bootstrap
+
+Tests unitaires, d’intégration et tests de charge inclus
+
+⚙️ Technologies utilisées
+Python 3.11+
+
+Flask (framework web)
+
+Flask-Login (gestion des sessions)
+
+Flask-WTF (formulaires sécurisés)
+
+Flask-SQLAlchemy (ORM SQL)
+
+SQLite (base de données locale)
+
+Bootstrap 5 (interface utilisateur responsive)
+
+Pytest (tests unitaires et fonctionnels)
+
+Locust (tests de charge)
+
+Werkzeug (sécurité et hashing de mots de passe)
+
+🗂️ Arborescence du projet
+php
+Copier
+Modifier
+student_manager/
+├── app/
+│   ├── __init__.py           # Création app Flask, db, blueprints
+│   ├── models.py             # Modèles SQLAlchemy (User, Student, Subject, Note)
+│   ├── routes/
+│   │   ├── auth.py           # Authentification (login/logout)
+│   │   ├── admin.py          # Gestion comptes admin
+│   │   ├── student.py        # CRUD étudiants
+│   │   ├── subject.py        # CRUD matières
+│   │   └── note.py           # CRUD notes + calcul moyennes
+│   ├── templates/            # Templates HTML Bootstrap
+│   └── static/               # CSS, JS, images Bootstrap, custom
+├── tests/
+│   ├── conftest.py           # Fixtures pytest et config base test
+│   ├── test_models.py        # Tests unitaires
+│   ├── test_routes.py        # Tests fonctionnels
+│   ├── test_integration.py   # Tests d’intégration
+│   ├── locustfile.py         # Test de charge avec Locust
+│   └── load_test_threaded.py # Test charge multithreadé Python
+├── run.py                    # Lancement de l’application Flask
+├── init_users.py             # Script d’insertion des comptes admin/user
+├── requirements.txt          # Dépendances Python
+└── run_tests.sh              # Script bash pour lancer les tests pytest
+👥 Comptes tests préconfigurés
+Nom d’utilisateur	Mot de passe	Rôle
+admin	admin123	Administrateur
+user	user123	Standard
+
+🚀 Installation et lancement
+1. Cloner le projet
+bash
+Copier
+Modifier
+git clone <ton-repo-url>
+cd student_manager
+2. Créer un environnement virtuel Python et activer
+bash
+Copier
+Modifier
+python3 -m venv venv
+source venv/bin/activate       # Linux/macOS
+venv\Scripts\activate.bat      # Windows
+3. Installer les dépendances
+bash
+Copier
+Modifier
+pip install -r requirements.txt
+4. Initialiser la base de données et les comptes
+bash
+Copier
+Modifier
+python init_users.py
+5. Lancer le serveur Flask
+bash
+Copier
+Modifier
+python run.py
+L’application sera accessible sur http://127.0.0.1:5000
+
+6. Accès
+La racine / redirige vers la page de login /auth/login.
+
+Utilise les comptes test pour te connecter.
+
+🧪 Lancer les tests
+Tests unitaires, fonctionnels et d’intégration
+bash
+Copier
+Modifier
+./run_tests.sh
+Tests de charge avec Locust
+bash
+Copier
+Modifier
+pip install locust
+locust -f tests/locustfile.py
+Ouvre http://localhost:8089, indique le nombre d’utilisateurs et démarre.
+
+📝 Notes
+Le rôle admin peut gérer tous les comptes, étudiants, matières, notes.
+
+Le rôle standard ne voit que la liste des moyennes.
+
+L’interface est responsive grâce à Bootstrap 5.
+
+Les mots de passe sont stockés hashés avec Werkzeug.
+
+🤝 Contribution
+N’hésite pas à faire des PR, ouvrir des issues ou demander des fonctionnalités !

@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+{% block title %}Notes{% endblock %}
+{% block content %}
+<h2>Liste des Notes</h2>
+<a href="{{ url_for('note.add_note') }}" class="btn btn-primary mb-3">Ajouter une Note</a>
+<a href="{{ url_for('note.student_averages') }}" class="btn btn-warning mb-3">Voir moyenne</a>
+<table class="table">
+    <thead><tr><th>Étudiant</th><th>Matière</th><th>Valeur</th></tr></thead>
+    <tbody>
+    {% for note in notes %}
+        <tr>
+            <td>{{ note.student.name }}</td>
+            <td>{{ note.subject.name }}</td>
+            <td>{{ note.value }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('admin.dashboard') }}" class="btn btn-warning">Retour Dashboard</a>
+{% endblock %}

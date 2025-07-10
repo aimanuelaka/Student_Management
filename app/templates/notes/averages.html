@@ -1,0 +1,31 @@
+
+{% extends 'base.html' %}
+{% block title %}Moyennes des Étudiants{% endblock %}
+{% block content %}
+<h2>Moyennes des Étudiants par Matière</h2>
+<table class="table">
+    <thead>
+        <tr><th>Étudiant</th><th>Matières et Moyennes</th></tr>
+    </thead>
+    <tbody>
+        {% for student in averages %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>
+                <ul>
+                {% for item in student.subjects %}
+                    <li>{{ item.subject }} : {{ item.average }}</li>
+                {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if current_user.role == 'admin' %}
+<a href="{{ url_for('admin.dashboard') }}" class="btn btn-warning">Retour Dashboard</a>
+{% else %}
+<a href="{{ url_for('auth.logout') }}" class="btn btn-danger">Logout</a>
+ {% endif %}
+{% endblock %}

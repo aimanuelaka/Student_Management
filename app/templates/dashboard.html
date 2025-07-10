@@ -1,0 +1,53 @@
+
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+      
+            <h2>Bienvenue {{ current_user.username }} - role : ({{ current_user.role }})</h2> 
+            <a href="{{ url_for('auth.logout') }}" class="btn btn-danger">Logout</a>
+</div>
+
+{% if current_user.is_authenticated %}
+  {% if current_user.role == 'admin' %}
+
+  <div class="row g-3">
+          <div class="col-md-6">
+                      <a href="{{ url_for('student.list_students') }}" class="btn btn-warning w-100">
+                          ➕ Gestion des étudiants
+                      </a>
+          </div>
+          <div class="col-md-6">
+                      <a href="{{ url_for('subject.list_subjects') }}" class="btn btn-warning w-100">
+                          📋 Gestion des matieres
+                      </a>
+          </div>
+
+          <div class="col-md-6">
+                      <a href="{{ url_for('note.list_notes') }}" class="btn btn-primary w-100">
+                          ➕ Gestion des notes
+                      </a>
+          </div>
+
+          <div class="col-md-6">
+                      <a href="{{ url_for('note.student_averages') }}" class="btn btn-primary w-100">
+                          📋 Gestion des moyennes
+                      </a>
+          </div>
+
+  </div>
+  
+  
+  {% else %}
+   <div class="col-md-6">
+                <a href="{{ url_for('note.student_averages') }}" class="btn btn-primary w-100">
+                    ➕ Gestion des moyennes
+                </a>
+    </div>
+  {% endif %}
+{% endif %}
+
+
+{% endblock %}
+
